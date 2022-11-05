@@ -1,68 +1,68 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @admin = Genres.all
-    @genres = Genres.new
+    @items = Item.all
   end
 
   def new
-    @genres = Genres.new
+    @item = Item.new
   end
 
   def create
-    @genres = Genres.new(book_params)
-    @genres.user_id = current_user.id
-    if @genres.save
+
+    @item = Item.new(item_params)
+    # @item.user_id = current_user.id
+    if@item.save
     flash[:notice]="Book was successfully created."
 
-     redirect_to book_path(@genres.id)
+    redirect_to admin_items_path
     else
-     @genres = Genres.all
-     render :index
+    @item = Item.all
+    render :index
     end
   end
 
-  def show
-    @genres = Genres.find(params[:id])
-    @admin = @genres.user
+  # def show
+  #   @item = Item.find(params[:id])
+  #   @item = @item.user
 
-  end
+  # end
 
 
-  def edit
-    @genres = Genres.find(params[:id])
-    if @genres.user == current_user
-      render "edit"
-    else
-      redirect_to books_path
-    end
-  end
+  # def edit
+  #   @item = Item.find(params[:id])
+  #   if item.user == current_user
+  #     render "edit"
+  #   else
+  #     redirect_to items_path
+  #   end
+  # end
 
-  def update
-    @genres = Genres.find(params[:id])
-    @genres.update(book_params)
+  # def update
+  #   @item = Item.find(params[:id])
+  #   @item.update(items_params)
 
-    if @book.save
-    flash[:notice]="Book was successfully updated."
-    redirect_to book_path(@book.id)
-    else
-      render :edit
-    end
-   end
+  #   if @item.save
+  #   flash[:notice]="Book was successfully updated."
+  #   redirect_to item_path(@item.id)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    redirect_to '/books'
-  end
+  # def destroy
+  #   item = Item.find(params[:id])
+  #   item.destroy
+  #   redirect_to '/items'
+  # end
   private
 
-  def book_params
-    params.require(:book).permit(:title, :body)
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price)
   end
-  def correct_user
-    @book = Book.find(params[:id])
-    @user = @book.user
-    redirect_to(books_path) unless @user == current_user
-  end
+  # def correct_user
+  #   @book = Book.find(params[:id])
+  #   @user = @book.user
+  #   redirect_to(books_path) unless @user == current_user
+  # end
 end

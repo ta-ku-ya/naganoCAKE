@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   }
   devise_scope :users do
     get '/customers', to: redirect("/customers/sign_up")
-    resources :books, only: [:new, :create, :edit, :update,:index, :show, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -13,8 +12,11 @@ Rails.application.routes.draw do
   }
   get  '/top' => 'homes#top'
 
-  get 'items' => 'public/items#index'
+   get 'items' => 'public/items#index'
   namespace :admin do
-    resources :items
+    resources :items, only: [:index, :new, :create]
+    resources :genres, only: [:new, :create, :edit, :update,:index, :show, :destroy]
+    resources :order
+    resources :order_details
   end
 end
