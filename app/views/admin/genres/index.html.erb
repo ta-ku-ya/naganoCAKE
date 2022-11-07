@@ -1,0 +1,15 @@
+<h1>ジャンル一覧</h1>
+
+<% @genres.each do |genres| %>
+
+  <p>ジャンル</p>
+  <span><%= genres.name %></span>
+
+<% end %>
+<%= form_with model:@genres, url: admin_items_path, method: :post  do |f| %>
+
+<%= f.submit '新規追加' %>
+<% end %>
+
+
+<%= link_to /admin/ %>

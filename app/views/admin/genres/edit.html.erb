@@ -1,0 +1,16 @@
+<h1>ジャンル一覧</h1>
+
+<% @genres.each do |genres| %>
+
+  <p>ジャンル</p>
+  <span><%= genres.name %></span>
+
+<% end %>
+
+<%= form_with model:@item, url: edit_admin_item_path, method: :patch  do |f| %>
+
+ <h4>ジャンル</h4>
+  <%= f.text_field :name %>
+
+  <%= f.submit '編集' %>
+<% end %>

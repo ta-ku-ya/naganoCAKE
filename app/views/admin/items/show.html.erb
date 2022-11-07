@@ -1,5 +1,13 @@
-<h2>タイトル</h2>
-<p><%= @item.title %></p>
+ <%= form_with model:@item, url: admin_items_path, method: :post  do |f| %>
 
-<h2>本文</h2>
-<p><%= @item.body %></p>
+ <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品説明文</h4>
+  <%= f.text_area :introduction %>
+
+  <h4>税抜き価格</h4>
+  <%= f.text_field :price %>
+
+  <%= link_to "編集", edit_admin_item_path(@item.id) %>
+  <% end %>

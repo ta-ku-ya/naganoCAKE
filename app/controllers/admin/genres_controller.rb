@@ -1,28 +1,24 @@
 class Admin::GenresController < ApplicationController
 
 
-  def index
-    @genres = Genres.all
-    @genres = Genres.new
+ def index
+    @genres = Genre.all
+    @genres = Genre.new
+
   end
 
 
 
   def create
-    @genres = Genres.new(genres_params)
+    @genres = Genre.new(genres_params)
 
-
-    @genres._id = current_admin.id
-    if @genres.save
+  if @genres.save
 
 
     flash[:notice]=" was successfully created."
-
-
-
-     redirect_to _path(@genres.id)
+     redirect_to admin_genres_path(@genres.id)
     else
-     @genres = Genres.all
+     @genres = Genre.all
      render :index
     end
   end
@@ -31,31 +27,20 @@ class Admin::GenresController < ApplicationController
 
 
   def edit
-    @genres = Genres.find(params[:id])
+    @genres = Genre.find(params[:id])
 
-
-    if @genres.admin == current_admin
       render "edit"
-    else
-
-
-
-      redirect_to books_path
-    end
   end
 
   def update
-    @genres = Genres.find(params[:id])
+    @genres = Genre.find(params[:id])
     @genres.update(genres_params)
     if @genres.save
 
 
     flash[:notice]=" was successfully updated."
 
-
-
-
-    redirect_to genres_path(@genres.id)
+   redirect_to admin_genres_path(@genres.id)
     else
       render :edit
     end
@@ -66,15 +51,15 @@ class Admin::GenresController < ApplicationController
   def genres_params
 
 
-    params.require(:genres).permit(:title, :body)
+    params.require(:genres).permit(:name)
   end
 
 
-  def correct_admin
-    @genres = Genres.find(params[:id])
-    @admin = @Genres.admin
+  # def correct_admin
+  #   @genres = Genres.find(params[:id])
+  #   @admin = @Genres.admin
 
 
-    redirect_to(_path) unless @admin == current_admin
-  end
+  #   redirect_to(_path) unless @admin == current_admin
+  # end
 end

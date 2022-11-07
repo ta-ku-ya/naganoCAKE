@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @item = Item.all
   end
 
   def new
@@ -13,42 +13,38 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     # @item.user_id = current_user.id
     if@item.save
-    flash[:notice]="Book was successfully created."
+    flash[:notice]=" was successfully created."
 
-    redirect_to admin_items_path
+    redirect_to admin_item_path(@item.id)
     else
     @item = Item.all
     render :index
     end
   end
 
-  # def show
-  #   @item = Item.find(params[:id])
-  #   @item = @item.user
+  def show
+    @item = Item.find(params[:id])
+    # @item = @item.user
 
-  # end
+  end
 
 
-  # def edit
-  #   @item = Item.find(params[:id])
-  #   if item.user == current_user
-  #     render "edit"
-  #   else
-  #     redirect_to items_path
-  #   end
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    render "edit"
+  end
 
-  # def update
-  #   @item = Item.find(params[:id])
-  #   @item.update(items_params)
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
 
-  #   if @item.save
-  #   flash[:notice]="Book was successfully updated."
-  #   redirect_to item_path(@item.id)
-  #   else
-  #     render :edit
-  #   end
-  # end
+    if @item.save
+    flash[:notice]=" was successfully updated."
+    redirect_to admin_item_path(@item.id)
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   item = Item.find(params[:id])
