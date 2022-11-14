@@ -3,13 +3,17 @@
 <% @genres.each do |genres| %>
 
   <p>ジャンル</p>
-  <span><%= genres.name %></span>
+  <span><%= link_to genres.name, edit_admin_genre_path(genres.id)%></span>
+
+
 
 <% end %>
-<%= form_with model:@genres, url: admin_items_path, method: :post  do |f| %>
+<%= form_with model:@genre, url: admin_genres_path, method: :post  do |f| %>
+
+  <h4>ジャンル名</h4>
+  <%= f.text_field :name %>
 
 <%= f.submit '新規追加' %>
 <% end %>
 
 
-<%= link_to /admin/ %>

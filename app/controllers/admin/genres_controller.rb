@@ -3,7 +3,7 @@ class Admin::GenresController < ApplicationController
 
  def index
     @genres = Genre.all
-    @genres = Genre.new
+    @genre = Genre.new
 
   end
 
@@ -27,7 +27,8 @@ class Admin::GenresController < ApplicationController
 
 
   def edit
-    @genres = Genre.find(params[:id])
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
 
       render "edit"
   end
@@ -51,7 +52,7 @@ class Admin::GenresController < ApplicationController
   def genres_params
 
 
-    params.require(:genres).permit(:name)
+    params.require(:genre).permit(:name)
   end
 
 

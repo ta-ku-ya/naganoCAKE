@@ -58,3 +58,5 @@ gem 'devise'
 gem 'net-smtp'
 
 gem 'pry-rails'
+
+gem 'kaminari','~> 1.2.1'

@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
   def create
 
     @item = Item.new(item_params)
-    # @item.user_id = current_user.id
+
     if@item.save
     flash[:notice]=" was successfully created."
 
@@ -24,7 +24,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    # @item = @item.user
+
 
   end
 

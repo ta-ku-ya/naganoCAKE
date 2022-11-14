@@ -1,14 +1,14 @@
-<h1>会員一覧</h1>
+<h1>注文履歴一覧</h1>
 
-<% @customer.each do |customer| %>
+<% @order.each do |order| %>
 
-  <p>会員ID</p>
+  <p>購入日時</p>
   <span><%= customer.id %></span>
 
-  <p>氏名</p>
+  <p>購入者</p>
   <span><%= customer.name %></span>
 
-  <p>メールアドレス</p>
+  <p>注文個数</p>
   <span><%= customer.email %></span>
 
 <%= paginate customers %>
