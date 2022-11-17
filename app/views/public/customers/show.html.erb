@@ -1,0 +1,31 @@
+ <%= form_with model:@customer, url: public_customer_my page_path, method: :post  do |f| %>
+
+
+<h2>登録情報</h2>
+ <%= f.submit '編集する', edit_public_customer_path(@customer.id) %>
+
+
+  <h4>氏名</h4>
+  <%= f.text_area :last_name, :first_name %>
+
+  <h4>kana</h4>
+  <%= f.text_field :last_name_kana, :first_name_kana %>
+
+  <h4>郵便番号</h4>
+  <%= f.text_field :postal_code %>
+
+  <h4>住所</h4>
+  <%= f.text_field :address %>
+
+  <h4>電話番号</h4>
+  <%= f.text_field :telephone_number %>
+
+  <h4>メールアドレス</h4>
+  <%= f.text_field :email %>
+
+  <h4>会員ステータス</h4>
+  <%= f.text_field :customer_id %>
+
+  <%= f.submit '一覧を見る', edit_admin_customer_path(@customer.id) %>
+  注文履歴<%= f.submit '一覧を見る', admin_order_path(@order.id) %>
+  <% end %>
