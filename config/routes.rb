@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'homes#about', as: :about
   get '/customers/my page'
+  get '/information/edit'
+  get '/customers/update' => '/information'
+  get '/customers/information/withdraw'
+  get '/customers/unsubscribe'
    resources :customers, only: [:show, :edit, :update]
   devise_scope :users do
     get '/customers', to: redirect("/customers/sign_up")
