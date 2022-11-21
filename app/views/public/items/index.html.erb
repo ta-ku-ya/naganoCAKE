@@ -1,0 +1,16 @@
+<h1>投稿一覧</h1>
+
+<% @item.each do |item| %>
+
+  <p>商品名</p>
+  <span><%= item.name %></span>
+
+  <p>商品説明文</p>
+  <span><%= item.introduction %></span>
+
+  <p>税抜き価格</p>
+  <span><%= item.price %></span>
+
+  <span><% redirect_to admin_item__path(item.id) %> </span>
+<%= paginate customers %>
+<% end %>

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/customers/information/withdraw'
   get '/customers/unsubscribe'
    resources :customers, only: [:show, :edit, :update]
+   resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+   resources :customers, only: [:show, :index]
   devise_scope :users do
     get '/customers', to: redirect("/customers/sign_up")
   end
